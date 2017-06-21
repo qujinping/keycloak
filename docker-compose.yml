@@ -1,0 +1,23 @@
+mysql:
+    image: mysql
+    environment:
+        - MYSQL_DATABASE=keycloak 
+        - MYSQL_USER=keycloak 
+        - MYSQL_PASSWORD=password 
+        - MYSQL_ROOT_PASSWORD=root_password
+
+keycloak:
+    image: keycloak:3.1.0.Final
+    environment:
+        - KEYCLOAK_LOGLEVEL=DEBUG
+        - MYSQL_DATABASE=keycloak
+        - MYSQL_USERNAME=keycloak
+        - MYSQL_PASSWORD=password
+        - KEYCLOAK_USER=admin
+        - KEYCLOAK_PASSWORD=admin
+    links:
+        - mysql:mysql
+    ports:
+        - "8089:8080"
+        - "9999:9990"
+        - "443:8443"
