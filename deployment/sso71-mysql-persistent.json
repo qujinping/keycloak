@@ -212,6 +212,61 @@
     ],
     "objects": [
         {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "Keycloak sso server image stream."
+                }
+            },
+            "spec": {
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "Build keycloak sso server binary."
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "${APP_SOURCE_REPOSITORY_URL}"
+                    }
+                },
+                "strategy": {
+                    "type": "Docker"
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APPLICATION_NAME}:latest"
+                    }
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {
+                        }
+                    }
+                ]
+            }
+        },
+        {
             "kind": "Service",
             "apiVersion": "v1",
             "spec": {
@@ -351,7 +406,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "redhat-sso71-openshift:1.1"
+                                "name": "${APPLICATION_NAME}:latest"
                             }
                         }
                     },
