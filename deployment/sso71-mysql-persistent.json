@@ -151,6 +151,14 @@
             "required": true
         },
         {
+            "displayName": "Database root Password",
+            "description": "Database user root password",
+            "name": "DB_ROOT_PASSWORD",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
             "displayName": "Database Password",
             "description": "Database user password",
             "name": "DB_PASSWORD",
@@ -201,6 +209,13 @@
             "name": "SSO_SERVICE_PASSWORD",
             "value": "",
             "required": false
+        },
+        {
+            "displayName": "SSO Service source code",
+            "description": "The source code of the SSO service.",
+            "name": "APP_SOURCE_REPOSITORY_URL",
+            "value": "https://github.com/qujinping/keycloak.git",
+            "required": true
         },
         {
             "displayName": "MySQL Image Stream Tag",
@@ -684,6 +699,10 @@
                                     }
                                 ],
                                 "env": [
+                                    {
+                                        "name": "MYSQL_ROOT_PASSWORD",
+                                        "value": "${DB_ROOT_PASSWORD}"
+                                    },
                                     {
                                         "name": "MYSQL_USER",
                                         "value": "${DB_USERNAME}"
