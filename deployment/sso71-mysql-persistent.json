@@ -215,6 +215,24 @@
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
+                "name": "mysql"
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "${MYSQL_IMAGE_STREAM_TAG}",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "mysql:${MYSQL_IMAGE_STREAM_TAG}"
+                        }
+                     }
+                 ]
+             }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
                 "name": "${APPLICATION_NAME}",
                 "labels": {
                     "application": "${APPLICATION_NAME}"
