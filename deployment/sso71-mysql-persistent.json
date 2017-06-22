@@ -39,13 +39,6 @@
             "required": false
         },
         {
-            "displayName": "Database JNDI Name",
-            "description": "Database JNDI name used by application to resolve the datasource, e.g. java:/jboss/datasources/mysql",
-            "name": "DB_JNDI",
-            "value": "java:jboss/datasources/KeycloakDS",
-            "required": false
-        },
-        {
             "displayName": "Database Name",
             "description": "Database name",
             "name": "DB_DATABASE",
@@ -534,19 +527,15 @@
                                         "value": "${APPLICATION_NAME}-mysql=DB"
                                     },
                                     {
-                                        "name": "DB_JNDI",
-                                        "value": "${DB_JNDI}"
-                                    },
-                                    {
-                                        "name": "DB_USERNAME",
+                                        "name": "MYSQL_USERNAME",
                                         "value": "${DB_USERNAME}"
                                     },
                                     {
-                                        "name": "DB_PASSWORD",
+                                        "name": "MYSQL_PASSWORD",
                                         "value": "${DB_PASSWORD}"
                                     },
                                     {
-                                        "name": "DB_DATABASE",
+                                        "name": "MYSQL_DATABASE",
                                         "value": "${DB_DATABASE}"
                                     },
                                     {
