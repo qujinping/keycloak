@@ -463,7 +463,7 @@
                                 "volumeMounts": [
                                     {
                                         "name": "eap-keystore-volume",
-                                        "mountPath": "/etc/eap-secret-volume",
+                                        "mountPath": "/opt/jboss/keycloak/standalone/configuration/keystore",
                                         "readOnly": true
                                     }
                                 ],
@@ -523,10 +523,6 @@
                                         "value": "3306"
                                     },
                                     {
-                                        "name": "DB_SERVICE_PREFIX_MAPPING",
-                                        "value": "${APPLICATION_NAME}-mysql=DB"
-                                    },
-                                    {
                                         "name": "MYSQL_USERNAME",
                                         "value": "${DB_USERNAME}"
                                     },
@@ -537,34 +533,6 @@
                                     {
                                         "name": "MYSQL_DATABASE",
                                         "value": "${DB_DATABASE}"
-                                    },
-                                    {
-                                        "name": "TX_DATABASE_PREFIX_MAPPING",
-                                        "value": "${APPLICATION_NAME}-mysql=DB"
-                                    },
-                                    {
-                                        "name": "DB_MIN_POOL_SIZE",
-                                        "value": "${DB_MIN_POOL_SIZE}"
-                                    },
-                                    {
-                                        "name": "DB_MAX_POOL_SIZE",
-                                        "value": "${DB_MAX_POOL_SIZE}"
-                                    },
-                                    {
-                                        "name": "DB_TX_ISOLATION",
-                                        "value": "${DB_TX_ISOLATION}"
-                                    },
-                                    {
-                                        "name": "OPENSHIFT_KUBE_PING_LABELS",
-                                        "value": "application=${APPLICATION_NAME}"
-                                    },
-                                    {
-                                        "name": "OPENSHIFT_KUBE_PING_NAMESPACE",
-                                        "valueFrom": {
-                                            "fieldRef": {
-                                                "fieldPath": "metadata.namespace"
-                                            }
-                                        }
                                     },
                                     {
                                         "name": "HTTPS_KEYSTORE_DIR",
@@ -593,18 +561,6 @@
                                     {
                                         "name": "SSO_ADMIN_PASSWORD",
                                         "value": "${SSO_ADMIN_PASSWORD}"
-                                    },
-                                    {
-                                        "name": "SSO_REALM",
-                                        "value": "${SSO_REALM}"
-                                    },
-                                    {
-                                        "name": "SSO_SERVICE_USERNAME",
-                                        "value": "${SSO_SERVICE_USERNAME}"
-                                    },
-                                    {
-                                        "name": "SSO_SERVICE_PASSWORD",
-                                        "value": "${SSO_SERVICE_PASSWORD}"
                                     }
                                 ]
                             }
