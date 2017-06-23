@@ -15,7 +15,7 @@
         "template": "sso71-mysql-persistent",
         "xpaas": "1.4.0"
     },
-    "message": "A new persistent SSO service (using MySQL) has been created in your project. The admin username/password for accessing the master realm via the SSO console is ${SSO_ADMIN_USERNAME}/${SSO_ADMIN_PASSWORD}. The username/password for accessing the MySQL database \"${DB_DATABASE}\" is ${DB_USERNAME}/${DB_PASSWORD}. Please be sure to create the \"${SERVICE_ACCOUNT_NAME}\" service account and the following secrets: \"${HTTPS_SECRET}\" containing the ${HTTPS_KEYSTORE} file used for serving secure content; \"${JGROUPS_ENCRYPT_SECRET}\" containing the ${JGROUPS_ENCRYPT_KEYSTORE} file used for securing JGroups communications; \"${SSO_TRUSTSTORE_SECRET}\" containing the ${SSO_TRUSTSTORE} file used for securing SSO requests.",
+    "message": "A new persistent SSO service (using MySQL) has been created in your project. The admin username/password for accessing the master realm via the SSO console is ${SSO_ADMIN_USERNAME}/${SSO_ADMIN_PASSWORD}. The username/password for accessing the MySQL database \"${DB_DATABASE}\" is ${DB_USERNAME}/${DB_PASSWORD}. Please be sure to create the \"${SERVICE_ACCOUNT_NAME}\" service account and the following secrets: \"${HTTPS_SECRET}\" containing the ${HTTPS_KEYSTORE} file used for serving secure content.",
     "parameters": [
         {
             "displayName": "Application Name",
@@ -42,7 +42,7 @@
             "displayName": "Database Name",
             "description": "Database name",
             "name": "DB_DATABASE",
-            "value": "root",
+            "value": "keycloak",
             "required": true
         },
         {
@@ -94,18 +94,6 @@
             "required": false
         },
         {
-            "displayName": "Datasource Maximum Pool Size",
-            "description": "Sets xa-pool/max-pool-size for the configured datasource.",
-            "name": "DB_MAX_POOL_SIZE",
-            "required": false
-        },
-        {
-            "displayName": "Datasource Transaction Isolation",
-            "description": "Sets transaction-isolation for the configured datasource.",
-            "name": "DB_TX_ISOLATION",
-            "required": false
-        },
-        {
             "displayName": "MySQL Lower Case Table Names",
             "description": "Sets how the table names are stored and compared.",
             "name": "MYSQL_LOWER_CASE_TABLE_NAMES",
@@ -139,8 +127,7 @@
             "displayName": "Database Username",
             "description": "Database user name",
             "name": "DB_USERNAME",
-            "from": "user[a-zA-Z0-9]{3}",
-            "generate": "expression",
+            "value": "keycloak",
             "required": true
         },
         {
@@ -170,38 +157,15 @@
             "displayName": "SSO Admin Username",
             "description": "SSO Server admin username",
             "name": "SSO_ADMIN_USERNAME",
-            "from": "[a-zA-Z0-9]{8}",
-            "generate": "expression",
+            "value": "admin",
             "required": true
         },
         {
             "displayName": "SSO Admin Password",
             "description": "SSO Server admin  password",
             "name": "SSO_ADMIN_PASSWORD",
-            "from": "[a-zA-Z0-9]{8}",
-            "generate": "expression",
+            "value": "admin",
             "required": true
-        },
-        {
-            "displayName": "SSO Realm",
-            "description": "Realm to be created in the SSO server (e.g. demo).",
-            "name": "SSO_REALM",
-            "value": "",
-            "required": false
-        },
-        {
-            "displayName": "SSO Service Username",
-            "description": "The username used to access the SSO service.  This is used by clients to create the appliction client(s) within the specified SSO realm.",
-            "name": "SSO_SERVICE_USERNAME",
-            "value": "",
-            "required": false
-        },
-        {
-            "displayName": "SSO Service Password",
-            "description": "The password for the SSO service user.",
-            "name": "SSO_SERVICE_PASSWORD",
-            "value": "",
-            "required": false
         },
         {
             "displayName": "SSO Service source code",
@@ -462,7 +426,7 @@
                                 "imagePullPolicy": "Always",
                                 "volumeMounts": [
                                     {
-                                        "name": "eap-keystore-volume",
+                                        "name": "https-keystore-volume",
                                         "mountPath": "/opt/jboss/keycloak/standalone/configuration/keystore",
                                         "readOnly": true
                                     }
@@ -483,7 +447,7 @@
                                         "command": [
                                             "/opt/jboss/keycloak/bin/jboss-cli.sh",
                                             "-c",
-                                            ":ls"
+                                            "ls"
                                         ]
                                     }
                                 },
@@ -492,7 +456,7 @@
                                         "command": [
                                             "/opt/jboss/keycloak/bin/jboss-cli.sh",
                                             "-c",
-                                            ":ls"
+                                            "ls"
                                         ]
                                     }
                                 },
@@ -535,10 +499,6 @@
                                         "value": "${DB_DATABASE}"
                                     },
                                     {
-                                        "name": "HTTPS_KEYSTORE_DIR",
-                                        "value": "/etc/eap-secret-volume"
-                                    },
-                                    {
                                         "name": "HTTPS_KEYSTORE",
                                         "value": "${HTTPS_KEYSTORE}"
                                     },
@@ -555,11 +515,11 @@
                                         "value": "${HTTPS_PASSWORD}"
                                     },
                                     {
-                                        "name": "SSO_ADMIN_USERNAME",
+                                        "name": "KEYCLOAK_USER",
                                         "value": "${SSO_ADMIN_USERNAME}"
                                     },
                                     {
-                                        "name": "SSO_ADMIN_PASSWORD",
+                                        "name": "KEYCLOAK_PASSWORD",
                                         "value": "${SSO_ADMIN_PASSWORD}"
                                     }
                                 ]
@@ -567,7 +527,7 @@
                         ],
                         "volumes": [
                             {
-                                "name": "eap-keystore-volume",
+                                "name": "https-keystore-volume",
                                 "secret": {
                                     "secretName": "${HTTPS_SECRET}"
                                 }
