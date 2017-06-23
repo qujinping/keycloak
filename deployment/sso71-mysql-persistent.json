@@ -70,21 +70,21 @@
             "displayName": "Server Keystore Type",
             "description": "The type of the keystore file (JKS or JCEKS)",
             "name": "HTTPS_KEYSTORE_TYPE",
-            "value": "",
+            "value": "jks",
             "required": false
         },
         {
             "displayName": "Server Certificate Name",
             "description": "The name associated with the server certificate (e.g. jboss)",
             "name": "HTTPS_NAME",
-            "value": "",
+            "value": "identity",
             "required": false
         },
         {
             "displayName": "Server Keystore Password",
             "description": "The password for the keystore and certificate (e.g. mykeystorepass)",
             "name": "HTTPS_PASSWORD",
-            "value": "",
+            "value": "pascal",
             "required": false
         },
         {
