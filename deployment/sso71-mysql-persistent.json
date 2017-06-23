@@ -471,7 +471,7 @@
                                     "preStop": {
                                         "exec": {
                                             "command": [
-                                                "/opt/eap/bin/jboss-cli.sh",
+                                                "/opt/jboss/keycloak/bin/jboss-cli.sh",
                                                 "-c",
                                                 ":shutdown(timeout=60)"
                                             ]
@@ -481,7 +481,7 @@
                                 "livenessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/opt/eap/bin/jboss-cli.sh",
+                                            "/opt/jboss/keycloak/bin/jboss-cli.sh",
                                             "-c",
                                             ":ls"
                                         ]
@@ -490,7 +490,7 @@
                                 "readinessProbe": {
                                     "exec": {
                                         "command": [
-                                            "/opt/eap/bin/jboss-cli.sh",
+                                            "/opt/jboss/keycloak/bin/jboss-cli.sh",
                                             "-c",
                                             ":ls"
                                         ]
