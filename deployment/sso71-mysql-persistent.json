@@ -147,6 +147,13 @@
             "required": true
         },
         {
+            "displayName": "Storage Class of Database Persistent Volume Claim ",
+            "description": "Storage Class to dynamically provision persistent storage for database volume.",
+            "name": "DB_STORAGE_CLASS",
+            "value": "gluster-heketi",
+            "required": true
+        },
+        {
             "displayName": "Database Volume Capacity",
             "description": "Size of persistent storage for database volume.",
             "name": "VOLUME_CAPACITY",
@@ -656,6 +663,9 @@
             "kind": "PersistentVolumeClaim",
             "metadata": {
                 "name": "${APPLICATION_NAME}-mysql-claim",
+                "annotations": {
+                    "volume.beta.kubernetes.io/storage-class": "${DB_STORAGE_CLASS}"
+                }
                 "labels": {
                     "application": "${APPLICATION_NAME}"
                 }
