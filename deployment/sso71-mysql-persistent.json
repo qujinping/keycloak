@@ -665,7 +665,7 @@
                 "name": "${APPLICATION_NAME}-mysql-claim",
                 "annotations": {
                     "volume.beta.kubernetes.io/storage-class": "${DB_STORAGE_CLASS}"
-                }
+                },
                 "labels": {
                     "application": "${APPLICATION_NAME}"
                 }
