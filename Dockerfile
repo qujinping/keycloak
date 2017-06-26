@@ -41,11 +41,8 @@ RUN java -jar /usr/share/java/saxon.jar -s:$JBOSS_HOME/standalone/configuration/
 RUN mkdir -p $JBOSS_HOME/modules/system/layers/base/com/mysql/jdbc/main; cd $JBOSS_HOME/modules/system/layers/base/com/mysql/jdbc/main && curl -O http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.42/mysql-connector-java-5.1.42.jar
 ADD module.xml $JBOSS_HOME/modules/system/layers/base/com/mysql/jdbc/main/
 
-# setup SSL
-USER root
-ADD keycloak.jks $JBOSS_HOME/standalone/configuration/keystore/
-
 #Give correct permissions when used in an OpenShift environment.
+USER root
 RUN chown -R 1001:0 $JBOSS_HOME/standalone && \
     chmod -R g+rwx $JBOSS_HOME/standalone
 
