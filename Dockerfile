@@ -53,7 +53,7 @@ USER 1001
 RUN sed -i -e 's/<security-realms>/&\n            <security-realm name="UndertowRealm">\n                <server-identities>\n                    <ssl>\n                        <keystore path="keystore\/keycloak.jks" relative-to="jboss.server.config.dir" keystore-password="${env.HTTPS_PASSWORD:secret}" alias="${env.HTTPS_NAME:secret}" key-password="${env.HTTPS_PASSWORD:secret}" \/>\n                    <\/ssl>\n                <\/server-identities>\n            <\/security-realm>/' $JBOSS_HOME/standalone/configuration/standalone.xml
 RUN sed -i -e 's/<server name="default-server">/&\n                <https-listener name="https" socket-binding="https" security-realm="UndertowRealm"\/>/' $JBOSS_HOME/standalone/configuration/standalone.xml
 
-VOLUME $JBOSS_HOME/standalone/configuration/keystore
+#VOLUME $JBOSS_HOME/standalone/configuration/keystore
 
 WORKDIR $JBOSS_HOME
 
