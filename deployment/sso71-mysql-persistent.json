@@ -63,7 +63,7 @@
             "displayName": "Server Keystore Filename",
             "description": "The name of the keystore file within the secret",
             "name": "HTTPS_KEYSTORE",
-            "value": "keycloak.jks",
+            "value": "sso-https.jks",
             "required": false
         },
         {
@@ -77,14 +77,14 @@
             "displayName": "Server Certificate Name",
             "description": "The name associated with the server certificate (e.g. jboss)",
             "name": "HTTPS_NAME",
-            "value": "identity",
+            "value": "sso-https-key",
             "required": false
         },
         {
             "displayName": "Server Keystore Password",
             "description": "The password for the keystore and certificate (e.g. mykeystorepass)",
             "name": "HTTPS_PASSWORD",
-            "value": "pascal",
+            "value": "admin",
             "required": false
         },
         {
