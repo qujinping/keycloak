@@ -84,7 +84,7 @@
             "displayName": "Server Keystore Password",
             "description": "The password for the keystore and certificate (e.g. mykeystorepass)",
             "name": "HTTPS_PASSWORD",
-            "value": "admin",
+            "value": "admin123",
             "required": false
         },
         {
